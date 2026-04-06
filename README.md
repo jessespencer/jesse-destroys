@@ -1,33 +1,39 @@
 # Jesse Destroys
 
-A minimal personal branding landing page hosted at [jessedestroys.com](https://jessedestroys.com).
+Personal case study portfolio and landing page at [jessedestroys.com](https://jessedestroys.com).
 
-## About
+## What It Is
 
-A single-page static site featuring an animated GIF on a black background. Responsive layout using flexbox, no dependencies.
-
-## Tech Stack
-
-- Pure HTML + CSS
-- GitHub Pages hosting
+A single-page static site showcasing experiments and side projects. Features a rotating tagline, embedded media (YouTube/Loom/images), and social links. Pure HTML/CSS/JS — no build tools, no dependencies.
 
 ## Project Structure
 
 ```
 jesse-destroys/
-├── index.html          # Landing page
-├── jesse-destroys.gif  # Animated branding asset
-└── CNAME               # Custom domain config
+├── index.html          # Single-page site (markup, styles, and script)
+├── jesse-destroys.gif  # Animated logo
+├── CNAME               # Custom domain config for GitHub Pages
+└── CLAUDE.md           # Project-specific Claude Code instructions
 ```
 
 ## Running Locally
 
-Open `index.html` directly in a browser, or:
+Open `index.html` directly, or serve it:
 
 ```bash
-python3 -m http.server 8000
+python3 -m http.server 3000
 ```
+
+Then visit `http://localhost:3000`.
 
 ## Deployment
 
-Push to `main` to deploy automatically via GitHub Pages.
+Hosted on GitHub Pages. Push to `main` and it deploys automatically.
+
+## Adding a New Case Study
+
+Duplicate an `<article class="experiment">` block in `index.html`. Each entry supports:
+
+- **Image thumbnail** — wrap an `<img>` in an `<a class="experiment-thumb">`
+- **Embedded video** — use the `.embed-wrap` iframe pattern (16:9 aspect ratio)
+- **External link** — add an `<a class="experiment-link">` in `.experiment-info`
