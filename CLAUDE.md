@@ -41,6 +41,6 @@ To add a new case study, duplicate an `<article class="experiment">` block and u
 2. `.experiment-title` — project name
 3. `.experiment-desc` — one-line description
 4. `.experiment-link` — optional external URL
-5. Embed: either an image thumbnail or an iframe in `.embed-wrap`
+5. Embed: either an image thumbnail or an iframe in `.embed-wrap`. Thumbnails live in `images/` as 1600×840 JPEG screenshots (1200×630 viewport at 2x); hotlinking a site's own `og:image` is fine when it has one
 
 To add a new rotating tagline, append a string to the `phrases` array in the `<script>` block.
