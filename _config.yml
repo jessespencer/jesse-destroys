@@ -1,0 +1,5 @@
+# GitHub Pages build config. Keeps repo docs off the live site.
+exclude:
+  - CLAUDE.md
+  - AGENTS.md
+  - README.md
