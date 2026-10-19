@@ -9,6 +9,8 @@ Static single-page portfolio site. No framework, no build step — just `index.h
 - HTML, CSS, vanilla JS (all in `index.html`)
 - No package manager, no dependencies
 - Hosted on GitHub Pages with custom domain (`jessedestroys.com`)
+- `_config.yml` only excludes repo docs from the Pages build — add any new top-level `.md` there, or Pages will publish it
+- `AGENTS.md` is a symlink to this file (for Codex) — edit `CLAUDE.md`, never the link
 
 ## Architecture
 
