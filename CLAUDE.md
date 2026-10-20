@@ -9,7 +9,8 @@ Static single-page portfolio site. No framework, no build step — just `index.h
 - HTML, CSS, vanilla JS (all in `index.html`)
 - No package manager, no dependencies
 - Hosted on GitHub Pages with custom domain (`jessedestroys.com`)
-- `_config.yml` only excludes repo docs from the Pages build — add any new top-level `.md` there, or Pages will publish it
+- `covers/` holds the thumbnail template and source shots — excluded from the Pages build
+- `_config.yml` only excludes repo docs and `covers/` from the Pages build — add any new top-level `.md` there, or Pages will publish it
 - `AGENTS.md` is a symlink to this file (for Codex) — edit `CLAUDE.md`, never the link
 
 ## Architecture
@@ -41,6 +42,8 @@ To add a new case study, duplicate an `<article class="experiment">` block and u
 2. `.experiment-title` — project name
 3. `.experiment-desc` — one-line description
 4. `.experiment-link` — optional external URL
-5. Embed: either an image thumbnail or an iframe in `.embed-wrap`. Thumbnails live in `images/` as 1600×840 JPEG screenshots (1200×630 viewport at 2x); hotlinking a site's own `og:image` is fine when it has one
+5. Embed: either an image thumbnail or an iframe in `.embed-wrap`. Thumbnails are 1600×840 JPEG covers in `images/`, all rendered from `covers/template.html` so the set stays uniform — never drop in a raw screenshot or a site's `og:image`:
+   - Capture the live project at 1440×900, 2x, dark mode, into `covers/shots/<slug>.jpg` (stage light-only pages on a dark background)
+   - Render with the headless Chrome command in the template's header comment; `n` is the row's position, so renumber covers when rows are added or reordered
 
 To add a new rotating tagline, append a string to the `phrases` array in the `<script>` block.

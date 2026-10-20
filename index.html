@@ -84,17 +84,14 @@
     }
 
     /* Experiment rows */
-    .experiments {
-      max-width: 1400px;
-      margin: 0 auto;
-    }
 
     .experiment {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       gap: 40px;
-      padding: 40px 48px;
+      /* Full-bleed row so the hover fill spans the page; content lines up with .header-inner */
+      padding: 40px max(48px, calc((100% - 1400px) / 2));
       border-bottom: 1px solid rgba(255,255,255,0.1);
       transition: background 0.2s ease;
     }
@@ -246,7 +243,7 @@
       </div>
       <div class="embed-outer">
         <a href="https://zero.jessedestroys.com" target="_blank" class="experiment-thumb">
-          <img src="https://zero.jessedestroys.com/og.png" alt="Zero" loading="lazy">
+          <img src="images/zero.jpg" alt="Zero" loading="lazy">
         </a>
       </div>
     </article>
@@ -358,7 +355,7 @@
       </div>
       <div class="embed-outer">
         <a href="https://www.thebroodinghopster.com" target="_blank" class="experiment-thumb">
-          <img src="https://thebroodinghopster.com/images/og-image.jpg" alt="The Brooding Hopster" loading="lazy">
+          <img src="images/brooding-hopster.jpg" alt="The Brooding Hopster" loading="lazy">
         </a>
       </div>
     </article>
