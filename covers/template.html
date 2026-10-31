@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <!--
-  Cover template for case-study thumbnails. Every cover shares this stage so the set reads as one body of work.
-  Usage: template.html?n=01&name=Zero&shot=zero  (loads shots/zero.jpg, a 1440×900 dark-mode capture)
-  Render at 800×420, 2x → 1600×840:
-    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --hide-scrollbars \
-      --window-size=800,420 --force-device-scale-factor=2 --screenshot=out.png \
-      "file://$PWD/covers/template.html?n=01&name=Zero&shot=zero"
+  Cover template for case-study thumbnails. Every cover is a full-bleed crop so the card grid reads as one body of work.
+  Usage: template.html?shot=zero&zoom=1.4&x=50&y=0  (loads shots/zero.jpg, a 1440×900 dark-mode capture)
+    zoom  scale past the cover fit, so sparse pages fill the frame (default 1)
+    x, y  focal point in percent, kept in place while zooming (default 50, 0)
+  Crops live in render.sh, which writes the 1600×840 JPEGs to images/.
 -->
 <html lang="en">
 <head>
@@ -21,58 +20,25 @@
       background: #000;
     }
 
-    .stage {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(ellipse 70% 90% at 50% 0%, #1c1c1c 0%, #0a0a0a 65%, #050505 100%);
-    }
-
-    .label {
-      position: absolute;
-      top: 24px;
-      left: 32px;
-      right: 32px;
-      display: flex;
-      justify-content: space-between;
-      font: 500 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
-    }
-
-    .window {
-      position: absolute;
-      top: 64px;
-      left: 80px;
-      width: 640px;
-      height: 360px; /* runs just past the stage bottom; shorter box keeps wide shots from losing their sides */
-      border-radius: 8px;
-      overflow: hidden;
-      outline: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 30px 60px -10px rgba(0,0,0,0.9), 0 0 0 6px rgba(255,255,255,0.025);
-    }
-
-    .window img {
+    img {
       width: 100%;
       height: 100%;
       display: block;
       object-fit: cover;
-      object-position: top;
     }
   </style>
 </head>
 <body>
-  <div class="stage">
-    <div class="label"><span id="n"></span><span id="name"></span></div>
-    <div class="window"><img id="shot" alt=""></div>
-  </div>
+  <img id="shot" alt="">
   <script>
     (function () {
       var q = new URLSearchParams(location.search);
-      document.getElementById('n').textContent = q.get('n') || '00';
-      document.getElementById('name').textContent = q.get('name') || '';
-      document.getElementById('shot').src = 'shots/' + (q.get('shot') || '') + '.jpg';
+      var img = document.getElementById('shot');
+      var focus = (q.get('x') || '50') + '% ' + (q.get('y') || '0') + '%';
+      img.style.objectPosition = focus;
+      img.style.transformOrigin = focus;
+      img.style.transform = 'scale(' + (q.get('zoom') || '1') + ')';
+      img.src = 'shots/' + (q.get('shot') || '') + '.jpg';
     })();
   </script>
 </body>
