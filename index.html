@@ -83,32 +83,33 @@
       height: 20px;
     }
 
-    /* Experiment rows */
+    /* Experiment cards */
+
+    .experiments {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      max-width: 1496px; /* 1400px of content plus the side padding, so cards line up with .header-inner */
+      margin: 0 auto;
+      padding: 48px;
+    }
 
     .experiment {
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 40px;
-      /* Full-bleed row so the hover fill spans the page; content lines up with .header-inner */
-      padding: 40px max(48px, calc((100% - 1400px) / 2));
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
       transition: background 0.2s ease;
-    }
-
-    .experiment-info {
-      flex-shrink: 0;
-      width: 240px;
-      padding-top: 8px;
-    }
-
-    .embed-outer {
-      flex-shrink: 0;
-      width: 55%;
     }
 
     .experiment:hover {
       background: rgba(255,255,255,0.03);
+    }
+
+    .experiment-info {
+      order: 1;
+      padding: 20px;
     }
 
     .experiment-year {
@@ -145,14 +146,14 @@
 
     .experiment-thumb {
       display: block;
-      border-radius: 4px;
-      overflow: hidden;
+      background: #111;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
     .experiment-thumb img {
       width: 100%;
+      aspect-ratio: 40 / 21;
       display: block;
-      border-radius: 4px;
       transition: opacity 0.2s ease;
     }
 
@@ -188,24 +189,21 @@
     }
 
     /* Responsive */
+    @media (max-width: 1100px) {
+      .experiments {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     @media (max-width: 768px) {
       .header {
         padding: 48px 24px 40px;
       }
 
-      .experiment {
-        flex-direction: column;
+      .experiments {
+        grid-template-columns: 1fr;
         gap: 20px;
-        padding: 32px 24px;
-      }
-
-      .experiment-info {
-        width: 100%;
-        padding-top: 0;
-      }
-
-      .embed-outer {
-        width: 100%;
+        padding: 24px;
       }
 
       .footer {
